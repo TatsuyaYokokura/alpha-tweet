@@ -1,24 +1,21 @@
-# README
+# alpha-tweet
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 基本機能
+- ログイン/ログアウト機能
+- ツイート投稿機能
+  - タイトル
+  - 140文字以内のツイート
+  - 写真
+- ツイート一覧閲覧機能
+  - 15件のページネーション機能
+- コメント投稿機能
+  - 非同期処理
 
-Things you may want to cover:
+## デザイン
+- レスポンシブデザイン
+- スマホのデザインイメージは[こちら](https://xd.adobe.com/view/891484a1-832b-442d-5d9f-d49c6dcb68e1-ff25/){:target="_blank"}
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## DB設計
+### Tweets table
+### Users table
+### comments table
