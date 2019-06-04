@@ -13,7 +13,7 @@
 
 ## デザイン
 - レスポンシブデザイン
-- スマホのデザインイメージは[こちら](https://xd.adobe.com/view/891484a1-832b-442d-5d9f-d49c6dcb68e1-ff25/){:target="_blank"}
+- スマホのデザインイメージは[こちら](https://xd.adobe.com/view/82c3c2fa-4e3e-420f-6a61-ae54dcf3419b-f4f2/)
 
 ## DB設計
 ### Tweets table
