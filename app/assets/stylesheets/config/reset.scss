@@ -21,6 +21,8 @@ time, mark, audio, video {
 
 body {
   line-height:1;
+  font-size:62.5%;
+  color: #666;
 }
 
 article,aside,details,figcaption,figure,
@@ -48,6 +50,9 @@ a {
   font-size:100%;
   vertical-align:baseline;
   background:transparent;
+  &:hover {
+    text-decoration:none;
+  }
 }
 
 /* change colours to suit your needs */
