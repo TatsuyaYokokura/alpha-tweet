@@ -1,14 +1,19 @@
 <nav class="navbar navbar-expand-sm navbar-light bg-light header">
-  <a class="navbar-brand" href="#">αTweet</a>
+  <%= link_to 'αTweet', root_path, class: 'navbar-brand' %>
   <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <div class="navbar-nav ml-auto menu-lists">
-      <%= link_to 'LogIn', new_user_session_path, class: 'nav-item nav-link text-right' %>
-      <%= link_to 'LogOut', destroy_user_session_path, method: :delete, class: 'nav-item nav-link text-right' %>
-      <%= link_to 'SignUp', new_user_registration_path, class: 'nav-item nav-link text-right' %>
-      <%= link_to 'MyPage', root_path, class: 'nav-item nav-link text-right' %>
+      <% if user_signed_in? %>
+        <%= link_to 'LogOut', destroy_user_session_path, method: :delete, class: 'nav-item nav-link text-right' %>
+        <%= link_to 'MyPage', root_path, class: 'nav-item nav-link text-right' %>
+        <%= link_to 'Tweet', new_tweet_path, class: 'nav-item nav-link text-right' %>
+      <% else %>
+        <%= link_to 'LogIn', new_user_session_path, class: 'nav-item nav-link text-right' %>
+        <%= link_to 'SignUp', new_user_registration_path, class: 'nav-item nav-link text-right' %>
+        <%= link_to 'Tweet', new_tweet_path, class: 'nav-item nav-link text-right' %>
+      <% end %>
     </div>
   </div>
 </nav>
