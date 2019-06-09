@@ -1,0 +1,24 @@
+<section class="container tweets">
+  <ul class="row">
+    <% @tweets.each do |tweet| %>
+      <li class="col-md-6 col-lg-4 tweet-content">
+        <%= image_tag '', class: 'tweet-content__img' %>
+        <%= link_to tweet_path(tweet) do %>
+          <div class="tweet-content__box">
+            <h2 class="tweet-content__box__title"><%= tweet.title %></h2>
+            <h3 class="tweet-content__box__description"><%= tweet.description %></h3>
+          </div>
+        <% end %>
+        <div class="tweet-content__icon dropleft">
+          <span data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= icon('fas', 'cog fa-2x') %>
+          </span>
+          <div class="dropdown-menu">
+            <%= link_to '編集', edit_tweet_path(tweet), class: 'dropdown-item' %>
+            <%= link_to '削除', tweet_path(tweet), method: :delete, class: 'dropdown-item' %>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</section>

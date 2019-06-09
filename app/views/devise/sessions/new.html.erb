@@ -1,0 +1,22 @@
+<div class="account-box">
+  <h2>Log in</h2>
+
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: 'account-form') do |f| %>
+    <div class="field account-form__attr">
+      <%= f.label :Email, class: 'account-form__attr__label' %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'account-form__attr__field' %>
+    </div>
+
+    <div class="field account-form__attr">
+      <%= f.label :Password, class: 'account-form__attr__label' %><br />
+      <%= f.password_field :password, autocomplete: "current-password", class: 'account-form__attr__field' %>
+    </div>
+
+    <div class="actions account-form__attr">
+      <span><%= f.submit "submit", class: 'account-form__attr__btn' %>
+    </div>
+  <% end %>
+
+  <%= render "devise/shared/links" %>
+</div>
+
