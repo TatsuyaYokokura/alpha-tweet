@@ -4,5 +4,6 @@ class AddColumnToUsers < ActiveRecord::Migration[5.2]
     add_column :users, :facebook, :string
     add_column :users, :twitter, :string
     add_column :users, :homepage, :string
+    add_column :users, :image, :string
   end
 end
