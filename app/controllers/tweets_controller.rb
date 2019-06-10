@@ -3,7 +3,7 @@ class TweetsController < ApplicationController
   before_action :set_tweet, only: %i(show edit update destroy)
 
   def index
-    @tweets = Tweet.all
+    @tweets = Tweet.page(params[:page]).per(15).order('updated_at DESC')
   end
 
   def show
