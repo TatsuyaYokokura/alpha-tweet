@@ -14,8 +14,8 @@
             <%= icon('fas', 'cog fa-2x') %>
           </span>
           <div class="dropdown-menu">
-            <%= link_to '編集', edit_tweet_path(tweet), class: 'dropdown-item tweet-content__icon__menu' %>
-            <%= link_to '削除', tweet_path(tweet), method: :delete, class: 'dropdown-item tweet-content__icon__menu' %>
+            <%= link_to '編集', edit_tweet_path(tweet), class: 'dropdown-item' %>
+            <%= link_to '削除', tweet_path(tweet), method: :delete, class: 'dropdown-item' %>
           </div>
         </div>
       </li>
