@@ -4,6 +4,8 @@
       <li class="col-md-6 col-lg-4 tweet-content">
         <% if tweet.image.attached? %>
           <div class="tweet-content__img"><%= image_tag tweet.image %></div>
+        <% else %>
+          <div class="tweet-content__img"><%= image_tag 'noimage' %></div>
         <% end %>
         <%= link_to tweet_path(tweet) do %>
           <div class="tweet-content__box">
