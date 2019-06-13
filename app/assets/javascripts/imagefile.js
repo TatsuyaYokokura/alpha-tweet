@@ -1,7 +1,10 @@
 $(function() {
-  $('#user_avatar').on('change', function(e) {
-      var file = e.target.files[0];
-      var blobUrl = window.URL.createObjectURL(file);
-      $('#image').attr('src', blobUrl).css({'width':'200px', 'height':'150px', 'backgroud-size':'cover'});
+  $('input[type="file"]').on('change', function(e) {
+    const file = e.target.files[0];
+    const blobUrl = window.URL.createObjectURL(file);
+    $('#preview').attr({
+      'class': 'image-preview',
+      'src': blobUrl
+    });
   });
 });

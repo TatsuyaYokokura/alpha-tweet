@@ -12,8 +12,8 @@
   <div class="message-wrap__attr">
     <span class="message-wrap__attr__label">Image</span>
     <%= f.label :click_Image, for: 'user_avatar', class: 'message-wrap__attr__btn' %><br>
-    <%= f.file_field :image, onchange: 'imageload();' %>
-    <img id="image">
+    <%= f.file_field :image, onchange: 'imageload();' %><br>
+    <img id="preview">
   </div>
 
   <div class="actions message-wrap__attr">
