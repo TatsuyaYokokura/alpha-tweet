@@ -2,12 +2,15 @@
   <ul class="row">
     <% @tweets.each do |tweet| %>
       <li class="col-md-6 col-lg-4 tweet-content">
-        <%= image_tag '', class: 'tweet-content__img' %>
+        <% if tweet.image.attached? %>
+          <div class="tweet-content__img"><%= image_tag tweet.image %></div>
+        <% end %>
         <%= link_to tweet_path(tweet) do %>
           <div class="tweet-content__box">
             <h2 class="tweet-content__box__title"><%= tweet.title %></h2>
             <h3 class="tweet-content__box__description"><%= tweet.description %></h3>
           </div>
+          <div class="tweet-content__post"><%= tweet.user.nickname %></div>
         <% end %>
         <div class="tweet-content__icon dropleft">
           <span data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
