@@ -3,7 +3,7 @@ class CreateTweets < ActiveRecord::Migration[5.2]
     create_table :tweets do |t|
       t.string :title
       t.string :description
-      t.string :image
+      t.references :user, foreign_key: true
       t.timestamps
     end
   end
