@@ -43,6 +43,15 @@
       text-overflow: ellipsis;
     }
   }
+  &__post {
+    position: absolute;
+    bottom: 10%;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #fff;
+  }
   &__icon {
     position: absolute;
     top: 30px;
