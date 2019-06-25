@@ -22,6 +22,8 @@ class TweetsController < ApplicationController
   end
 
   def update
+    @tweet.update(tweet_params)
+    redirect_to root_path
   end
 
   def destroy
