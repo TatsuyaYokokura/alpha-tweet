@@ -28,6 +28,7 @@ class TweetsController < ApplicationController
 
   def destroy
     @tweet.destroy
+    redirect_to root_path
   end
 
   private
@@ -38,4 +39,5 @@ class TweetsController < ApplicationController
     def tweet_params
       params.require(:tweet).permit(:title, :description, :image).merge(user_id: current_user.id)
     end
+
 end
