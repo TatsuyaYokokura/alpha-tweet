@@ -96,5 +96,33 @@
       background: #fff;
       padding: 10px;
     }
+    #tweet_image {
+      display: none;
+    }
+    &__btn {
+      width: 90px;
+      height: 20px;
+      display: inline-block;
+      text-align: center;
+      line-height: 20px;
+      margin: 10px 0 10px 20px;
+      background: #666;
+      border-style: none;
+      border-radius: 5px;
+      color: #fff;
+      font-size: 0.6rem;
+    }
+    &__submit {
+      width: 90px;
+      height: 30px;
+      display: block;
+      margin: 0 auto;
+      background: #004876;
+      border-style: none;
+      border-radius: 5px;
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
   }
 }
