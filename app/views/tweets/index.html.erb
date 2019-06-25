@@ -14,15 +14,20 @@
           </div>
           <div class="tweet-content__post">Post by : <%= tweet.user.nickname %></div>
         <% end %>
-        <div class="tweet-content__icon dropleft">
-          <span data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= icon('fas', 'cog fa-2x') %>
-          </span>
-          <div class="dropdown-menu">
-            <%= link_to '編集', edit_tweet_path(tweet), class: 'dropdown-item tweet-content__icon__menu' %>
-            <%= link_to '削除', tweet_path(tweet), method: :delete, class: 'dropdown-item tweet-content__icon__menu' %>
+
+        <%# ユーザーがサインインしている、かつ同一人物であれば表示させる %>
+        <% if user_signed_in? && current_user.id == tweet.user_id %>
+          <div class="tweet-content__icon dropleft">
+            <span data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= icon('fas', 'cog fa-2x') %>
+            </span>
+            <div class="dropdown-menu">
+              <%= link_to '編集', edit_tweet_path(tweet), class: 'dropdown-item tweet-content__icon__menu' %>
+              <%= link_to '削除', tweet_path(tweet), method: :delete, class: 'dropdown-item tweet-content__icon__menu' %>
+            </div>
           </div>
-        </div>
+        <% end %>
+
       </li>
     <% end %>
   </ul>
