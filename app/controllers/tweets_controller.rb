@@ -7,6 +7,7 @@ class TweetsController < ApplicationController
   end
 
   def show
+    @user = User.find(@tweet.user_id)
   end
 
   def new

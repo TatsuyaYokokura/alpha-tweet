@@ -1,4 +1,55 @@
-<p id="notice"><%= notice %></p>
+<div class="show-content">
 
-<%= link_to 'Edit', edit_tweet_path(@tweet) %> |
-<%= link_to 'Back', tweets_path %>
+  <div class="show-content__tweet mx-auto">
+    <%# 写真があれば表示して、なければ「noimage」の画像を表示させる %>
+    <% if @tweet.image.attached? %>
+      <div class="show-content__tweet__img"><%= image_tag @tweet.image %></div>
+    <% else %>
+      <div class="show-content__tweet__img"><%= image_tag 'noimage' %></div>
+    <% end %>
+
+    <div class="show-content__tweet__box mx-auto">
+      <h2 class="show-content__tweet__box__title"><%= @tweet.title %></h2>
+      <h3 class="show-content__tweet__box__description"><%= @tweet.description %></h3>
+    </div>
+
+    <%# ユーザーがサインインしている、かつ同一人物であれば表示させる %>
+    <% if user_signed_in? && current_user.id == @tweet.user_id %>
+      <div class="show-content__tweet__icon dropleft">
+        <span data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= icon('fas', 'cog fa-2x') %>
+        </span>
+        <div class="dropdown-menu">
+          <%= link_to '編集', edit_tweet_path(@tweet), class: 'dropdown-item show-content__tweet__icon__menu' %>
+          <%= link_to '削除', tweet_path(@tweet), method: :delete, class: 'dropdown-item show-content__tweet__icon__menu', data: { confirm: '削除してもいいですか？' } %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="show-content__tweet__user mx-auto">
+      <% if @user.avatar.attached? %>
+        <%= image_tag @user.avatar, class: 'show-content__tweet__user__image' %>
+      <% else %>
+        <%= image_tag 'noimage', class: 'show-content__tweet__user__image' %>
+      <% end %>
+
+      <table class="show-content__tweet__user__table">
+        <tr>
+          <th>Name</th>
+          <td>yoko</td>
+        </tr>
+        <tr>
+          <th>City</th>
+          <td></td>
+        </tr>
+        <tr>
+          <th>Links</th>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+
