@@ -5,6 +5,11 @@
     <%= render "devise/shared/error_messages", resource: resource %>
 
     <div class="field account-form__attr">
+      <%= f.label :nickname, class: 'account-form__attr__label' %><br />
+      <%= f.text_field :nickname, autofocus: true, autocomplete: "neickname", maxlength: '10', class: 'account-form__attr__field' %>
+    </div>
+
+    <div class="field account-form__attr">
       <%= f.label :email, class: 'account-form__attr__label' %><br />
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'account-form__attr__field' %>
     </div>
@@ -22,8 +27,16 @@
       <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'account-form__attr__field' %>
     </div>
 
+    <div class="field account-form__attr">
+      <span class="account-form__attr__label">Your Image</span>
+      <%= f.label :click_Image, for: 'user_avatar', class: 'account-form__attr__btn' %><br>
+      <%= f.file_field :avatar, onchange: 'imageload();' %>
+      <img id="preview">
+    </div>
+
+
     <div class="actions account-form__attr">
-      <%= f.submit "Sign up", class: 'account-form__attr__btn' %>
+      <%= f.submit "Sign up", class: 'account-form__attr__submit' %>
     </div>
   <% end %>
 

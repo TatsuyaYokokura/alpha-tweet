@@ -1,9 +1,9 @@
 class TweetsController < ApplicationController
-  before_action :authenticate_user!, except: :index
+  before_action :authenticate_user!, except: %i(index show)
   before_action :set_tweet, only: %i(show edit update destroy)
 
   def index
-    @tweets = Tweet.page(params[:page]).per(12).order('updated_at DESC')
+    @tweets = Tweet.page(params[:page]).per(6).latest_updated
   end
 
   def show
@@ -17,7 +17,8 @@ class TweetsController < ApplicationController
   end
 
   def create
-    @tweet = Tweet.new(tweet_params)
+    Tweet.create(tweet_params)
+    redirect_to root_path
   end
 
   def update
@@ -33,6 +34,6 @@ class TweetsController < ApplicationController
     end
 
     def tweet_params
-      params.require(:tweet).permit(:title, :description, :image)
+      params.require(:tweet).permit(:title, :description, :image).merge(user_id: current_user.id)
     end
 end
