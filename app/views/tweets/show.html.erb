@@ -2,11 +2,11 @@
 
   <div class="show-content__tweet mx-auto">
     <%# 写真があれば表示して、なければ「noimage」の画像を表示させる %>
-    <% if @tweet.image.attached? %>
-      <div class="show-content__tweet__img"><%= image_tag @tweet.image %></div>
-    <% else %>
-      <div class="show-content__tweet__img"><%= image_tag 'noimage' %></div>
-    <% end %>
+  <% if @tweet.image.attached? %>
+    <div class="show-content__tweet__img"><%= image_tag @tweet.image %></div>
+  <% else %>
+    <div class="show-content__tweet__img"><%= image_tag 'noimage' %></div>
+  <% end %>
 
     <div class="show-content__tweet__box mx-auto">
       <h2 class="show-content__tweet__box__title"><%= @tweet.title %></h2>
