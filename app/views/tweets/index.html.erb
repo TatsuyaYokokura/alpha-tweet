@@ -1,4 +1,4 @@
-<section class="container">
+<div class="container">
   <ul class="row">
     <% @tweets.each do |tweet| %>
       <li class="col-md-6 col-lg-4 tweet-content">
@@ -33,6 +33,6 @@
       </li>
     <% end %>
   </ul>
-</section>
+</div>
 
 <%= paginate @tweets %>

@@ -1,5 +1,6 @@
-<div class="show-content">
+<div class="container show-content">
 
+  <%# show-content__tweet %>
   <div class="show-content__tweet mx-auto">
     <%# 写真があれば表示して、なければ「noimage」の画像を表示させる %>
   <% if @tweet.image.attached? %>
@@ -48,8 +49,41 @@
         </tr>
       </table>
     </div>
-
   </div>
+  <%# END show-content__tweet %>
+
+  <%#  show-content__comments %>
+  <div class="show-content__comments mx-auto">
+    <h2>Comments Index</h2>
+    <div class="show-content__comments__index mx-auto">
+      <% @comments.each do |comment| %>
+        <div class="show-content__comments__index__box">
+          <span class="time"><%= comment.created_at %></span>
+          <p class="text"><%= comment.text %></p>
+          <span class="post">by : <%= comment.user.nickname %></span>
+        </div>
+      <% end %>
+    </div>
+
+    <h2>New Comment</h2>
+    <div class="show-content__comments__new mx-auto">
+    <% if user_signed_in? %>
+      <%= form_with(modle: @comment, url: tweet_comments_path(@tweet), local: true) do |f| %>
+        <div class="actions message-wrap__attr">
+          <%= f.text_area :text, autofocus: true, autocomplete: "コメントを入力してください", class: 'message-wrap__attr__area' %>
+        </div>
+        <div class="actions message-wrap__attr">
+          <%= f.submit "Submit", class: 'message-wrap__attr__submit' %>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="show-content__comments__new__attention">
+        <span><%= link_to 'LogIn', new_user_session_path, class: 'btn' %></span>
+      </div>
+    <% end %>
+    </div>
+  </div>
+
 </div>
 
 

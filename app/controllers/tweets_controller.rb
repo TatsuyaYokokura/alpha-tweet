@@ -8,6 +8,8 @@ class TweetsController < ApplicationController
 
   def show
     @user = User.find(@tweet.user_id)
+    @comment = Comment.new
+    @comments = Comment.latest_updated
   end
 
   def new
