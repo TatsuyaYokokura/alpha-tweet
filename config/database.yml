@@ -50,5 +50,6 @@ test:
 production:
   <<: *default
   database: alpha-tweet_production
-  username: alpha-tweet
-  password: <%= ENV['ALPHA-TWEET_DATABASE_PASSWORD'] %>
+  username: root
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  socket: /var/lib/mysql/mysql.sock
