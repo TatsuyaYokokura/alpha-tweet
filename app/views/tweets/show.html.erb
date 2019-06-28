@@ -1,4 +1,82 @@
-<p id="notice"><%= notice %></p>
+<div class="container show-content">
 
-<%= link_to 'Edit', edit_tweet_path(@tweet) %> |
-<%= link_to 'Back', tweets_path %>
+  <%# show-content__tweet %>
+  <div class="show-content__tweet mx-auto">
+    <%# 写真があれば表示して、なければ「noimage」の画像を表示させる %>
+  <% if @tweet.image.attached? %>
+    <div class="show-content__tweet__img"><%= image_tag @tweet.image %></div>
+  <% else %>
+    <div class="show-content__tweet__img"><%= image_tag 'noimage' %></div>
+  <% end %>
+
+    <div class="show-content__tweet__box mx-auto">
+      <h2 class="show-content__tweet__box__title"><%= @tweet.title %></h2>
+      <% if user_signed_in? && current_user.id == @tweet.user_id %>
+        <div class="show-content__tweet__box__buttons">
+          <%= link_to '編集', edit_tweet_path(@tweet), class: 'btn' %>
+          <%= link_to '削除', tweet_path(@tweet), method: :delete, class: 'btn', data: { confirm: '削除してもいいですか？' } %>
+        </div>
+      <% end %>
+      <p class="show-content__tweet__box__description"><%= @tweet.description %></p>
+    </div>
+
+    <div class="show-content__tweet__user mx-auto">
+      <% if @user.avatar.attached? %>
+        <%= image_tag @user.avatar, class: 'show-content__tweet__user__image' %>
+      <% else %>
+        <%= image_tag 'noimage', class: 'show-content__tweet__user__image' %>
+      <% end %>
+
+      <table class="show-content__tweet__user__table">
+        <tr>
+          <th>Name</th>
+          <td>yoko</td>
+        </tr>
+        <tr>
+          <th>City</th>
+          <td></td>
+        </tr>
+        <tr>
+          <th>Links</th>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <%# END show-content__tweet %>
+
+  <%#  show-content__comments %>
+  <div class="show-content__comments mx-auto">
+    <h2>Comments Index</h2>
+    <div class="show-content__comments__index mx-auto">
+      <% @comments.each do |comment| %>
+        <div class="show-content__comments__index__box">
+          <span class="time"><%= comment.created_at %></span>
+          <p class="text"><%= comment.text %></p>
+          <span class="post">by : <%= comment.user.nickname %></span>
+        </div>
+      <% end %>
+    </div>
+
+    <h2>New Comment</h2>
+    <div class="show-content__comments__new mx-auto">
+    <% if user_signed_in? %>
+      <%= form_with(modle: @comment, url: tweet_comments_path(@tweet), local: true) do |f| %>
+        <div class="actions message-wrap__attr">
+          <%= f.text_area :text, autofocus: true, autocomplete: "コメントを入力してください", class: 'message-wrap__attr__area' %>
+        </div>
+        <div class="actions message-wrap__attr">
+          <%= f.submit "Submit", class: 'message-wrap__attr__submit' %>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="show-content__comments__new__attention">
+        <span><%= link_to 'LogIn', new_user_session_path, class: 'btn' %></span>
+      </div>
+    <% end %>
+    </div>
+  </div>
+
+</div>
+
+

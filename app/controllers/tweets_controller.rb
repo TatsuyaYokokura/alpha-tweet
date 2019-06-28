@@ -7,6 +7,9 @@ class TweetsController < ApplicationController
   end
 
   def show
+    @user = User.find(@tweet.user_id)
+    @comment = Comment.new
+    @comments = @tweet.comments.latest_updated
   end
 
   def new
@@ -22,10 +25,13 @@ class TweetsController < ApplicationController
   end
 
   def update
+    @tweet.update(tweet_params)
+    redirect_to root_path
   end
 
   def destroy
     @tweet.destroy
+    redirect_to root_path
   end
 
   private
@@ -36,4 +42,5 @@ class TweetsController < ApplicationController
     def tweet_params
       params.require(:tweet).permit(:title, :description, :image).merge(user_id: current_user.id)
     end
+
 end

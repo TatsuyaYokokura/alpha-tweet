@@ -1,12 +1,14 @@
-<section class="container tweets">
+<div class="container">
   <ul class="row">
     <% @tweets.each do |tweet| %>
       <li class="col-md-6 col-lg-4 tweet-content">
+        <%# 写真があれば表示して、なければ「noimage」の画像を表示させる %>
         <% if tweet.image.attached? %>
           <div class="tweet-content__img"><%= image_tag tweet.image %></div>
         <% else %>
           <div class="tweet-content__img"><%= image_tag 'noimage' %></div>
         <% end %>
+
         <%= link_to tweet_path(tweet) do %>
           <div class="tweet-content__box">
             <h2 class="tweet-content__box__title"><%= tweet.title %></h2>
@@ -14,18 +16,23 @@
           </div>
           <div class="tweet-content__post">Post by : <%= tweet.user.nickname %></div>
         <% end %>
-        <div class="tweet-content__icon dropleft">
-          <span data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= icon('fas', 'cog fa-2x') %>
-          </span>
-          <div class="dropdown-menu">
-            <%= link_to '編集', edit_tweet_path(tweet), class: 'dropdown-item tweet-content__icon__menu' %>
-            <%= link_to '削除', tweet_path(tweet), method: :delete, class: 'dropdown-item tweet-content__icon__menu' %>
+
+        <%# ユーザーがサインインしている、かつ同一人物であれば表示させる %>
+        <% if user_signed_in? && current_user.id == tweet.user_id %>
+          <div class="tweet-content__icon dropleft">
+            <span data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= icon('fas', 'cog fa-2x') %>
+            </span>
+            <div class="dropdown-menu">
+              <%= link_to '編集', edit_tweet_path(tweet), class: 'dropdown-item tweet-content__icon__menu' %>
+              <%= link_to '削除', tweet_path(tweet), method: :delete, class: 'dropdown-item tweet-content__icon__menu', data: { confirm: '削除してもいいですか？' } %>
+            </div>
           </div>
-        </div>
+        <% end %>
+
       </li>
     <% end %>
   </ul>
-</section>
+</div>
 
 <%= paginate @tweets %>
