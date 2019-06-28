@@ -11,21 +11,14 @@
 
     <div class="show-content__tweet__box mx-auto">
       <h2 class="show-content__tweet__box__title"><%= @tweet.title %></h2>
-      <h3 class="show-content__tweet__box__description"><%= @tweet.description %></h3>
-    </div>
-
-    <%# ユーザーがサインインしている、かつ同一人物であれば表示させる %>
-    <% if user_signed_in? && current_user.id == @tweet.user_id %>
-      <div class="show-content__tweet__icon dropleft">
-        <span data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <%= icon('fas', 'cog fa-2x') %>
-        </span>
-        <div class="dropdown-menu">
-          <%= link_to '編集', edit_tweet_path(@tweet), class: 'dropdown-item show-content__tweet__icon__menu' %>
-          <%= link_to '削除', tweet_path(@tweet), method: :delete, class: 'dropdown-item show-content__tweet__icon__menu', data: { confirm: '削除してもいいですか？' } %>
+      <% if user_signed_in? && current_user.id == @tweet.user_id %>
+        <div class="show-content__tweet__box__buttons">
+          <%= link_to '編集', edit_tweet_path(@tweet), class: 'btn' %>
+          <%= link_to '削除', tweet_path(@tweet), method: :delete, class: 'btn', data: { confirm: '削除してもいいですか？' } %>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+      <p class="show-content__tweet__box__description"><%= @tweet.description %></p>
+    </div>
 
     <div class="show-content__tweet__user mx-auto">
       <% if @user.avatar.attached? %>
