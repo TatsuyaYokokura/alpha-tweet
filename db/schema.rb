@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 2019_06_27_024835) do
     t.string "facebook"
     t.string "twitter"
     t.string "homepage"
+    t.string "image"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
